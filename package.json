@@ -1,25 +1,28 @@
 {
-  "name": "expressapi",
+  "name": "express-api",
   "version": "1.0.0",
   "description": "A REST API built using node+Express",
   "main": "app.js",
-  "start": "nodemon app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon app.js"
   },
   "author": "ogbinaka emmanuel @masterscode",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
-    "nodemon": "^2.0.2"
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.2",
+    "pg": "^8.7.1"
   },
-  "nodemonConfig":{
-    "restartable":"rs",
-    "ignore":["node_modules/**/node_modules"],
+  "nodemonConfig": {
+    "restartable": "rs",
+    "ignore": [
+      "node_modules/**/node_modules"
+    ],
     "delay": "2500",
-    "env":{
+    "env": {
       "NOVE_ENV": "development",
-      "PORT": 4000
+      "PORT": 3100
     }
   }
 }
