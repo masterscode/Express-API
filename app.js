@@ -1,47 +1,36 @@
-const http = require('http');
-const {server} = require('./server');
-const bodyParser = require('body-parser');
+const express = require("express");
+const app = express();
+const helmet = require('helmet');
+const StuffController = require('./controllers/stuff-controller');
 const PORT = process.env.PORT || 5100;
 
-server.set('port', PORT);
-const ver = '/v1';
 
-server.use((req,res, next)=>{
-  res.setHeader('Access-Control-Allow-Origin','*');
-  res.setHeader('Access-Control-Allow-Headers','Origin, X-Requested-With, Content, Accept, Content-Type, Authorization ');
-  res.setHeader('Access-Control-Allow-Methods','GET, POST, PUT, PATCH, DELETE, OPTIONS'); 
-  next();
+app.use(helmet());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.set("port", PORT);
+
+const ver = "/v1";
+
+app.use((req, res, next) => {
+	res.setHeader("Access-Control-Allow-Origin", "*");
+	res.setHeader(
+		"Access-Control-Allow-Headers",
+		"Origin, X-Requested-With, Content, Accept, Content-Type, Authorization "
+	);
+	res.setHeader(
+		"Access-Control-Allow-Methods",
+		"GET, POST, PUT, PATCH, DELETE, OPTIONS"
+	);
+	next();
 });
 
 
-server.use(ver + '/stuff', (req, res, next)=>{
-  const stuff = [
-    {
-        _id:'23424k2jlk23l4l', 
-        title:'the first stuff for sale', 
-        description:'the first stuff for sale', 
-        imageUrl:'', 
-        price:90, 
-        userId:34223
-  },
-    {
-        _id:'23424k2jlk23l4l', 
-        title:'the first stuff for sale', 
-        description:'the first stuff for sale', 
-        imageUrl:'', 
-        price:90, 
-        userId:34223
-  },
-];
-  res.status(200);
-  res.send(stuff);
-  next();
-});
+// register controllers / routes here
 
-server.post(ver + '/stuff', (req, res, next)=>{
-  console.log(req.body);
-  res.status(201).json({message:'stuff added successfully'});
-});
+app.use(ver + '/stuff', StuffController);
 
-const httpServer = http.createServer(server);
-httpServer.listen(PORT);
+// <====>
+
+module.exports = app;

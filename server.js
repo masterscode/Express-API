@@ -1,16 +1,6 @@
-const express = require('express');
+const http = require("http");
+const app = require("./app");
+const PORT = process.env.PORT || 5100;
 
-const server = express();
-
-server.use(express.json());
-server.use(express.urlencoded({extended:true}));
-
-
-module.exports.server = server;
-
-// server.use(bodyParser.json);
-// server.use(bodyParser.urlencoded({extended:true})); 
-/**
- * replaced with express.json()
-
-*/
+const httpServer = http.createServer(app);
+httpServer.listen(PORT);
