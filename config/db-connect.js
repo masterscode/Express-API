@@ -1,9 +1,8 @@
-const {Client} = require('pg');
+const mongoose = require("mongoose");
 
-const client = new Client(
-    {host:'localhost', user:'decagon', password:'', database:'express'}
-    );
+mongoose
+  .connect("mongodb://localhost/mongol")
+  .then(() => console.log("connection successful"))
+  .catch((error) => console.log("error with connection", error));
 
-client.connect()
-
-module.exports = client;
+  module.exports = mongoose;
