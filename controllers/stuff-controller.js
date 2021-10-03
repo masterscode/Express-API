@@ -7,8 +7,8 @@ router.get("/", (req, res, next) => {
 	res.send("you reached here");
 });
 
-router.post("/", (req, res, next) => {
-	res.status(201).json({ message: "stuff added successfully" });
+router.post("/", (request, response, next) => {
+	response.status(201).json({ message: "stuff added successfully" });
 });
 
 module.exports = router;

@@ -1,6 +1,6 @@
-const mongo = require("../config/db-connect");
+const db = require("../config/db-connect");
 
-const schema = new mongo.Schema({
+const schema = new db.Schema({
   name: {type:String, required: true},
   author: String,
   tags: [String],
@@ -8,7 +8,7 @@ const schema = new mongo.Schema({
   isPublished: Boolean,
 });
 
-const Course = mongo.model("Course", schema);
+const Course = db.model("Course", schema);
 
 // const course = new Course({
 //   name: "Node",

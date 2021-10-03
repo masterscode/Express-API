@@ -23,5 +23,8 @@
       "NOVE_ENV": "development",
       "PORT": 3100
     }
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.13"
   }
 }

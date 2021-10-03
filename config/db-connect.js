@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
-
+const link = 'mongodb+srv://imanuel:peace2lover@cluster0.mbdwx.mongodb.net/test';
 mongoose
-  .connect("mongodb://localhost/mongol")
+  .connect(link)
   .then(() => console.log("connection successful"))
   .catch((error) => console.log("error with connection", error));
 
